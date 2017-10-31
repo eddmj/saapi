@@ -3,6 +3,7 @@ from django.core import exceptions
 from .models import Customer
 
 
+
 def load_data(filename='seed_data.json', clear_db=False):
     if clear_db == True:
         try:
