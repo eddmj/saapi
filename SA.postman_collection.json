@@ -1,0 +1,161 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SA",
+		"_postman_id": "0127c374-3e87-2bcc-6079-133509c681f1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth - status",
+			"request": {
+				"url": "http://localhost:8000/auth/status/ACTIVE",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "20171101111537140_8HMJrThsV6mM7FaiQCqdhS",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Auth - Balance w. Op",
+			"request": {
+				"url": "http://localhost:8000/auth/balance/0.00/op/gte",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "20171101111537140_8HMJrThsV6mM7FaiQCqdhS",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Auth - Customer",
+			"request": {
+				"url": "http://localhost:8000/auth/customer/C0201XEX",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "20171101111537140_8HMJrThsV6mM7FaiQCqdhS",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Auth - ID",
+			"request": {
+				"url": "http://localhost:8000/auth/id/A02029VF",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "20171101111537140_8HMJrThsV6mM7FaiQCqdhS",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"url": "http://localhost:8000/register/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "password",
+							"value": "asfsdfdsf5543",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "fsdfdshfjk@kfdhlfjd.com",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UnAuth - Status",
+			"request": {
+				"url": "http://localhost:8000/api/status/ACTIVE",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UnAuth - Balance w. op",
+			"request": {
+				"url": "http://localhost:8000/api/balance/111/op/gte/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UnAuth - Balance",
+			"request": {
+				"url": "http://localhost:8000/api/balance/0.04/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UnAuth - Customer",
+			"request": {
+				"url": "http://localhost:8000/api/customer/C0200098",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UnAuth - ID",
+			"request": {
+				"url": "http://localhost:8000/api/id/A02017NU/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
