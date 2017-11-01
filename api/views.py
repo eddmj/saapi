@@ -1,11 +1,78 @@
 from django.shortcuts import render
-from .models import Customer
+from .models import Customer, AbstractUser
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.core import exceptions
 from decimal import Decimal
 import json
+from .helpers import password_validation, email_validation, is_authenticated
+import datetime
+import shortuuid
+
+@api_view(['GET'])
+@is_authenticated
+def test(request):
+    return Response('works')
+
+@api_view((['POST']))
+def register(request):
+    """Registers a user"""
+    try:
+        if 'email' in request.data:
+            email = request.data['email']
+            if not email_validation(email):
+                content = {
+                    'status': 'failed',
+                    'reason': 'Please enter a valid email'
+                }
+                return Response(content, status=status.HTTP_400_BAD_REQUEST)
+            if email in AbstractUser.objects.all().values_list('email'):
+                content = {
+                    'status': 'failed',
+                    'reason': 'email already registed'
+                }
+                return Response(content, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            content = {
+                'status': 'failed',
+                'reason': 'Email required'
+            }
+            return Response(content, status=status.HTTP_400_BAD_REQUEST)
+        if 'password' in request.data:
+            password = request.data['password']
+            if not password_validation(password):
+                content = {
+                    'status': 'failed',
+                    'reason': 'Please enter a valid password'
+                }
+                return Response(content, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            content = {
+                'status': 'failed',
+                'reason': 'Password required'
+            }
+            return Response(content, status=status.HTTP_400_BAD_REQUEST)
+        stamp = datetime.datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:-3]
+        key = '{}_{}'.format(str(stamp), shortuuid.uuid())
+        a = AbstractUser.objects.create(
+            email = email,
+            password = password,
+            token = key
+        ).save()
+        content = {
+            'status': 'success',
+            'token': a.token,
+        }
+        return Response(content, status=status.HTTP_201_CREATED)
+    except Exception as e:
+        content = {
+            'status': 'failed',
+            'reason': 'user could not be registered'
+        }
+        return Response(content, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+
 
 @api_view(['GET'])
 def unauth_id(request, id):

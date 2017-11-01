@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import unauth_id, unauth_custid, unauth_balance, unauth_status
+from .views import unauth_id, unauth_custid, unauth_balance, unauth_status, register, test
 
 urlpatterns = [
     url(r'^api/id/(?P<id>.+)/?/$', unauth_id, name='unauth_id'),
@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^api/balance/(?P<balance>\d+\.\d{1,2})/$', unauth_balance, name='unauth_balance'),
     url(r'^api/balance/(?P<balance>\d{1,})/$', unauth_balance, name='unauth_balance'),
     url(r'^api/status/(?P<st>.+)/?/$', unauth_status, name='unauth_status'),
+    url(r'^register', register, name='register'),
+    url(r'^auth/test', test, name='test'),
 ]
