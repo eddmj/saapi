@@ -13,6 +13,7 @@ def load_data(filename='seed_data.json', clear_db=False):
     with open(filename) as data_file:
         data = json.load(data_file)
         for n in data['content']:
+            external_reference = None
             print(n)
             if 'externalReference' in n:
                 external_reference = n['externalReference']
